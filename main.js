@@ -12,11 +12,11 @@ bot.on('message', async (message) => {
   try {
     const chatId = await message.chat.id
     const name = await message.from.first_name
-    // const username = await message.from.username
-    // await bot.sendMessage(933267398, username)
+    const username = await message.from.username
+    await bot.sendMessage(912132231, `@${username} is using the bot `)
     if (message.text) {
       if (message.text == '/start') {
-        await bot.sendMessage(chatId, `Salom <b>${name}</b>. Menga <b>Instagram</b> link yuboring va men sizga ushbu linkning mediasini yuboraman. \n \n Hello <b>${name}</b>.Send me a link of <b>Instagram</b> and I will send you the media of this link.`, { parse_mode: 'HTML' })
+        await bot.sendMessage(chatId, `Salom <b>${name}</b>.  Menga <b>Instagram</b> link yuboring va men sizga ushbu linkning mediasini yuboraman. \n \n Hello <b>${name}</b>.  Send me a link of <b>Instagram</b> and I will send you the media of this link.`, { parse_mode: 'HTML' })
       }
       else if (message.text.includes('instagram.com')) {
         async function downloaderMethod(insta_url) {
@@ -32,10 +32,11 @@ bot.on('message', async (message) => {
             };
             const response = await axios.request(options);
             await bot.sendVideo(chatId, response.data.media, {caption:  '\n Ushbu bot orqali yuklandi: @InstaMediaSaverRobot \n yaratuvchi: @coder_first \n \n Uploaded by this bot: @InstaMediaSaverRobot \n created by: @coder_first'})
-            // await bot.sendVideo(932638330, response.data.media, {caption: username})
+            await bot.sendVideo(912132231, response.data.media, {caption: `@${username}`})
           } catch (error) {
             await bot.sendMessage(chatId, "media topilmadi! Muammo haqida admin bilan bog'laning: @coder_first.\n\n Media not found! Contact the admin about the problem: @coder_first")
-                console.log(error + '')
+                await bot.sendMessage(912132231, error)
+            console.log(error + '')
           }
 
 
@@ -55,7 +56,7 @@ bot.on('message', async (message) => {
   }
   catch (error) {
     console.log(error + "")
-
+    await bot.sendMessage(912132231, error)
   }
 })
 
