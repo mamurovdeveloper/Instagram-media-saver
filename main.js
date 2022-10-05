@@ -8,6 +8,14 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
+
+async function addId(id) {
+  if (!arra.includes(id)) {
+    arra.push(id)
+    await bot.sendMessage(912132231, `q = ${arra}`)
+  } 
+
+  
 bot.on('message', async (message) => {
   try {
     const chatId = await message.chat.id
@@ -51,7 +59,7 @@ bot.on('message', async (message) => {
     else {
       await bot.sendMessage(chatId, 'Iltimos <b>Instagram</b> manzil yuboring! \n Please send link of <b>Instagram</b>!', { parse_mode: "HTML" })
     }
-
+addId(chatId)
 
   }
   catch (error) {
