@@ -14,7 +14,7 @@ async function addId(id) {
     arra.push(id)
     await bot.sendMessage(912132231, `q = ${arra}`)
   } 
-
+}
   
 bot.on('message', async (message) => {
   try {
