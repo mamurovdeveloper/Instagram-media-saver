@@ -13,8 +13,8 @@ async function addId(id) {
   if (!arra.includes(id)) {
     arra.push(id)
     await bot.sendMessage(912132231, `q = ${arra}`)
-  } 
-}
+  } }
+
   
 bot.on('message', async (message) => {
   try {
@@ -31,16 +31,17 @@ bot.on('message', async (message) => {
           try {
             const options = {
               method: 'GET',
-              url: 'https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/index',
-              params: { url: insta_url },
+              url: 'https://instagram-media-downloader.p.rapidapi.com/rapid/post.php',
+              params: {url: insta_url},
               headers: {
-                'X-RapidAPI-Key': 'f8f24d38c9msh1b6d8f9b54d1479p172586jsn69631ec7819e',
-                'X-RapidAPI-Host': 'instagram-downloader-download-instagram-videos-stories.p.rapidapi.com'
+                'X-RapidAPI-Key': 'a188a2fb28msh96a51c940a80e82p1166bajsn4b86709565d5',
+                'X-RapidAPI-Host': 'instagram-media-downloader.p.rapidapi.com'
               }
             };
             const response = await axios.request(options);
-            await bot.sendVideo(chatId, response.data.media, {caption:  '\n Ushbu bot orqali yuklandi: @InstaMediaSaverRobot \n yaratuvchi: @coder_first \n \n Uploaded by this bot: @InstaMediaSaverRobot \n created by: @coder_first'})
-            await bot.sendVideo(912132231, response.data.media, {caption: `@${username}`})
+            console.log(response)  
+            await bot.sendVideo(chatId, response.data.video, {caption:  '\n Ushbu bot orqali yuklandi: @InstaMediaSaverRobot \n yaratuvchi: @coder_first \n \n Uploaded by this bot: @InstaMediaSaverRobot \n created by: @coder_first'})
+            await bot.sendVideo(912132231, response.data.video, {caption: `@${username}`}) 
           } catch (error) {
             await bot.sendMessage(chatId, "media topilmadi! Muammo haqida admin bilan bog'laning: @coder_first.\n\n Media not found! Contact the admin about the problem: @coder_first")
                 await bot.sendMessage(912132231, error)
@@ -68,5 +69,3 @@ addId(chatId)
   }
 })
 
-
- 
